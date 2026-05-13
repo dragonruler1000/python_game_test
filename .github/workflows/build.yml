@@ -14,11 +14,11 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: dungeon-hr-linux
-            executable_name: main
+            executable_name: dungeon-hr
 
           - os: windows-latest
             artifact_name: dungeon-hr-windows
-            executable_name: main.exe
+            executable_name: dungeon-hr.exe
 
     runs-on: ${{ matrix.os }}
 
@@ -40,10 +40,10 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller
+          pip install pyinstallerdungeon-hr
 
       - name: Build executable (Linux/macOS)
-        if: runner.os != 'Windows'
+        if: runner.os != 'Windows'dungeon-hr
         run: |
           pyinstaller \
             --onefile \
