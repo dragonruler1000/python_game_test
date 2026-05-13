@@ -1,17 +1,27 @@
 import random
 import os
+import sys
 import json
+import tkinter as tk
+from tkinter import messagebox
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and PyInstaller"""
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 # =========================
-# DATA
+# LOAD DATA
 # =========================
 
-# Load tickets from JSON file
-with open("tickets.json", "r") as f:
+with open(resource_path("tickets.json"), "r") as f:
     tickets = json.load(f)
 
-# Load manager messages from JSON file
-with open("manager_messages.json", "r") as f:
+with open(resource_path("manager_messages.json"), "r") as f:
     manager_messages = json.load(f)
 
 # =========================
@@ -22,123 +32,240 @@ score = 0
 chaos = 0
 luck = 0
 rounds = 10
+current_round = 0
+used_tickets = []
+current_ticket = None
+
+# =========================
+# MAIN WINDOW
+# =========================
+
+root = tk.Tk()
+root.title("Dungeon Human Resources Simulator")
+root.geometry("800x600")
+root.configure(bg="#1e1e1e")
+
+# =========================
+# UI ELEMENTS
+# =========================
+
+header_label = tk.Label(
+    root,
+    text="DUNGEON HUMAN RESOURCES SIMULATOR",
+    font=("Consolas", 20, "bold"),
+    fg="white",
+    bg="#1e1e1e"
+)
+header_label.pack(pady=10)
+
+stats_label = tk.Label(
+    root,
+    text="",
+    font=("Consolas", 12),
+    fg="#00ff99",
+    bg="#1e1e1e"
+)
+stats_label.pack()
+
+manager_label = tk.Label(
+    root,
+    text="",
+    font=("Consolas", 11, "italic"),
+    fg="#ffcc66",
+    bg="#1e1e1e",
+    wraplength=700,
+    justify="left"
+)
+manager_label.pack(pady=10)
+
+customer_label = tk.Label(
+    root,
+    text="",
+    font=("Consolas", 14, "bold"),
+    fg="white",
+    bg="#1e1e1e",
+    wraplength=700,
+    justify="left"
+)
+customer_label.pack(pady=5)
+
+issue_label = tk.Label(
+    root,
+    text="",
+    font=("Consolas", 12),
+    fg="white",
+    bg="#1e1e1e",
+    wraplength=700,
+    justify="left"
+)
+issue_label.pack(pady=10)
+
+button_frame = tk.Frame(root, bg="#1e1e1e")
+button_frame.pack(pady=20)
+
+result_label = tk.Label(
+    root,
+    text="",
+    font=("Consolas", 11),
+    fg="#cccccc",
+    bg="#1e1e1e",
+    wraplength=700,
+    justify="left"
+)
+result_label.pack(pady=10)
+
+next_button = tk.Button(
+    root,
+    text="Next Ticket",
+    font=("Consolas", 12),
+    command=lambda: next_ticket()
+)
 
 # =========================
 # FUNCTIONS
 # =========================
 
-def clear_screen():
-    os.system("cls" if os.name == "nt" else "clear")
+def update_stats():
+    stats_label.config(
+        text=f"Score: {score} | Chaos Level: {chaos} | Luck: {luck} | Round: {current_round}/{rounds}"
+    )
 
+def clear_buttons():
+    for widget in button_frame.winfo_children():
+        widget.destroy()
 
-def print_header():
-    print("=" * 50)
-    print("      DUNGEON HUMAN RESOURCES SIMULATOR")
-    print("=" * 50)
-    print(f"Score: {score} | Chaos Level: {chaos} | Luck: {luck}")
-    print()
+def show_ticket():
+    global current_ticket
+    global current_round
 
+    if current_round >= rounds:
+        show_ending()
+        return
 
-def show_manager_message():
-    print("\n--- MANAGER EMAIL ---")
-    print(random.choice(manager_messages))
-    print("---------------------\n")
+    current_round += 1
 
+    update_stats()
+    result_label.config(text="")
+    next_button.pack_forget()
 
-def run_ticket(ticket):
+    # Manager message chance
+    if random.randint(1, 2) == 1:
+        manager_label.config(
+            text="--- MANAGER EMAIL ---\n" + random.choice(manager_messages)
+        )
+    else:
+        manager_label.config(text="")
+
+    # Prevent repeats
+    available_tickets = [
+        ticket for ticket in tickets
+        if ticket not in used_tickets
+    ]
+
+    if not available_tickets:
+        used_tickets.clear()
+        available_tickets = tickets.copy()
+
+    current_ticket = random.choice(available_tickets)
+    used_tickets.append(current_ticket)
+
+    customer_label.config(
+        text=f"CUSTOMER: {current_ticket['name']}"
+    )
+
+    issue_label.config(
+        text=f"ISSUE:\n{current_ticket['problem']}"
+    )
+
+    clear_buttons()
+
+    for index, solution in enumerate(current_ticket["solutions"]):
+        button = tk.Button(
+            button_frame,
+            text=solution,
+            font=("Consolas", 11),
+            width=60,
+            wraplength=500,
+            justify="left",
+            command=lambda idx=index: choose_solution(idx)
+        )
+
+        button.pack(pady=5)
+
+def choose_solution(choice):
     global score
     global chaos
     global luck
 
-    print(f"CUSTOMER: {ticket['name']}")
-    print(f"ISSUE: {ticket['problem']}")
-    print()
+    clear_buttons()
 
-    for i, solution in enumerate(ticket["solutions"], start=1):
-        print(f"{i}. {solution}")
-
-    print()
-
-    while True:
-        choice = input("Choose a solution: ")
-
-        if choice.isdigit():
-            choice = int(choice) - 1
-
-            if 0 <= choice < len(ticket["solutions"]):
-                break
-
-        print("Invalid choice. Try again.")
-
-    print()
-
-    if choice == ticket["correct"]:
-        print(ticket["success"])
+    if choice == current_ticket["correct"]:
+        result_text = current_ticket["success"]
         score += 10
         luck += random.randint(1, 10)
     else:
-        print(ticket["failure"])
+        result_text = current_ticket["failure"]
         chaos += 5
         luck -= random.randint(1, 5)
 
     # Random chaos escalation
     if random.randint(1, 4) == 1:
         chaos += 1
-        print("\nReality appears slightly unstable.")
+        result_text += "\n\nReality appears slightly unstable."
 
-    input("\nPress Enter to continue...")
+    result_label.config(text=result_text)
 
+    update_stats()
 
-def ending():
-    clear_screen()
+    next_button.pack(pady=20)
 
-    print("=" * 50)
-    print("FINAL REPORT")
-    print("=" * 50)
-    print(f"Final Score: {score}")
-    print(f"Final Chaos: {chaos}")
-    print(f"Final Luck: {luck}")
-    print()
+def next_ticket():
+    show_ticket()
+
+def show_ending():
+    clear_buttons()
+
+    manager_label.config(text="")
+    customer_label.config(text="FINAL REPORT")
+
+    final_text = (
+        f"Final Score: {score}\n"
+        f"Final Chaos: {chaos}\n"
+        f"Final Luck: {luck}\n\n"
+    )
 
     if chaos < 10:
-        print("You successfully maintained the dungeon.")
-        print("The kingdom remains mostly functional.")
+        final_text += (
+            "You successfully maintained the dungeon.\n"
+            "The kingdom remains mostly functional."
+        )
     elif chaos < 20:
-        print("Several laws of physics have resigned.")
-        print("Management considers this acceptable.")
+        final_text += (
+            "Several laws of physics have resigned.\n"
+            "Management considers this acceptable."
+        )
     else:
-        print("The moon has filed a support ticket.")
-        print("Reality is now customer service.")
+        final_text += (
+            "The moon has filed a support ticket.\n"
+            "Reality is now customer service."
+        )
+
+    issue_label.config(text=final_text)
+
+    result_label.config(text="")
+
+    next_button.config(
+        text="Exit",
+        command=root.destroy
+    )
+
+    next_button.pack(pady=20)
 
 # =========================
-# MAIN GAME LOOP
+# START GAME
 # =========================
 
-used_tickets = []
+show_ticket()
 
-for round_number in range(rounds):
+root.mainloop()
 
-    clear_screen()
-    print_header()
-
-    # Show random manager messages sometimes
-    if random.randint(1, 2) == 1:
-        show_manager_message()
-
-    # Prevent immediate repeats
-    available_tickets = [
-        ticket for ticket in tickets
-        if ticket not in used_tickets
-    ]
-
-    # Reset if all tickets used
-    if not available_tickets:
-        used_tickets.clear()
-        available_tickets = tickets.copy()
-
-    ticket = random.choice(available_tickets)
-    used_tickets.append(ticket)
-
-    run_ticket(ticket)
-
-ending()
