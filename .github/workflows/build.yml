@@ -14,11 +14,11 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: dungeon-hr-linux
-            executable_name: dungeon-hr
+            executable_name: main
 
           - os: windows-latest
             artifact_name: dungeon-hr-windows
-            executable_name: dungeon-hr.exe
+            executable_name: main.exe
 
     runs-on: ${{ matrix.os }}
 
@@ -48,7 +48,6 @@ jobs:
           pyinstaller \
             --onefile \
             --windowed \
-            --name dungeon-hr \
             --add-data "tickets.json:." \
             --add-data "manager_messages.json:." \
             main.py
@@ -59,7 +58,6 @@ jobs:
           pyinstaller `
             --onefile `
             --windowed `
-            --name dungeon-hr `
             --add-data "tickets.json;." `
             --add-data "manager_messages.json;." `
             main.py
