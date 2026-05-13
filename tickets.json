@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Goblin Mage",
+        "problem": "My fireball spell now creates soup.",
+        "solutions": [
+            "Reinstall fire",
+            "Increase soup permissions",
+            "Delete wizard"
+        ],
+        "correct": 0,
+        "success": "The fireball works again. Unfortunately the soup is now explosive.",
+        "failure": "The goblin becomes legally classified as chowder."
+    },
+    {
+        "name": "Skeleton Archer",
+        "problem": "My left arm disconnected during battle.",
+        "solutions": [
+            "Apply duct tape",
+            "Install more bones",
+            "Turn skeleton off and on again"
+        ],
+        "correct": 1,
+        "success": "The skeleton now has TOO MANY arms.",
+        "failure": "The skeleton files a workplace complaint."
+    },
+    {
+        "name": "Dragon Accountant",
+        "problem": "My treasure hoard won't calculate taxes.",
+        "solutions": [
+            "Burn the tax forms",
+            "Teach the dragon math",
+            "Eat the IRS"
+        ],
+        "correct": 2,
+        "success": "The kingdom no longer has a tax department.",
+        "failure": "The dragon discovers spreadsheets."
+    },
+    {
+        "name": "Orc Blacksmith",
+        "problem": "My anvil is making a weird noise.",
+        "solutions": [
+            "Oil the anvil",
+            "Replace the anvil",
+            "Convince the orc to switch to a different profession"
+        ],
+        "correct": 0,
+        "success": "The anvil is quiet again, but now it's also very slippery.",
+        "failure": "The orc's anvil is now classified as a musical instrument."
+    },
+    {
+        "name": "Annoyed Elf",
+        "problem": "Coworker had turned on Subway surfer on second monitor while working",
+        "solutions": [
+            "Uninstall Subway Surfer",
+            "Convince coworker to stop playing",
+            "Turn off second monitor"
+        ],
+        "correct": 2,
+        "success": "The elf can now focus on work, but is also very confused about why the second monitor is off.",
+        "failure": "The elf's productivity drops by 50% due to constant distraction."
+    },
+    {
+        "name": "Confused Boss",
+        "problem": "Jeff Stole all the paper towels and used them to make a sculpture of himself and put it on my desk",
+        "solutions": [
+            "Politely ask Jeff to remove the sculpture",
+            "Report Jeff to HR for inappropriate desk decorations",
+            "Join Jeff in his paper towel art project"
+        ],
+        "correct": 0,
+        "success": "Jeff apologizes and removes the sculpture, restoring order to the office.",
+        "failure": "The boss becomes obsessed with the sculpture and starts a new office trend of paper towel art, leading to a shortage of paper towels for actual use."
+    },
+    {
+        "name": "Addicted Goul",
+        "problem": "Had to much moss",
+        "solutions": [
+            "Go to moss rehab",
+            "Replace moss with grass",
+            "Convince goul to switch to a different addiction"
+        ],
+        "correct": 0,
+        "success": "The goul successfully completes moss rehab and is now addicted to grass instead.",
+        "failure": "The goul's addiction worsens and it starts hoarding moss, leading to a moss infestation in the office."
+    }
+]
