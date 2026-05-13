@@ -42,7 +42,7 @@ current_ticket = None
 
 root = tk.Tk()
 root.title("Dungeon Human Resources Simulator")
-root.geometry("800x600")
+root.geometry("1000x800")
 root.configure(bg="#1e1e1e")
 
 # =========================
