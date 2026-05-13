@@ -43,7 +43,7 @@ jobs:
           pip install pyinstallerdungeon-hr
 
       - name: Build executable (Linux/macOS)
-        if: runner.os != 'Windows'dungeon-hr
+        if: runner.os != 'Windows'
         run: |
           pyinstaller \
             --onefile \
