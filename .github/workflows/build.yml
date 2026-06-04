@@ -14,15 +14,17 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: dungeon-hr-linux
-            executable_name: main
+            executable_name: dungeon-hr-linux
           - os: windows-latest
             artifact_name: dungeon-hr-windows
-            executable_name: main.exe
+            executable_name: dungeon-hr-windows.exe
           - os: macos-26-intel
             artifact_name: dungeon-hr-macos-intel
+            executable_name: dungeon-hr-macos-intel
             mac_zip_name: dungeon-hr-macos-intel.zip
           - os: macos-latest
             artifact_name: dungeon-hr-macos-arm64
+            executable_name: dungeon-hr-macos-arm64
             mac_zip_name: dungeon-hr-macos-arm64.zip
     runs-on: ${{ matrix.os }}
 
@@ -54,6 +56,7 @@ jobs:
             --windowed \
             --add-data "tickets.json:." \
             --add-data "manager_messages.json:." \
+            --name ${{ matrix.executable_name }} \
             main.py
 
       - name: Build executable (Windows)
@@ -64,13 +67,14 @@ jobs:
             --windowed `
             --add-data "tickets.json;." `
             --add-data "manager_messages.json;." `
+            --name ${{ matrix.executable_name }} `
             main.py
 
       - name: Package macOS App
         if: runner.os == 'macOS'
         run: |
           cd dist
-          zip -r "${{ matrix.mac_zip_name }}" main.app
+          zip -r "${{ matrix.mac_zip_name }}" "${{ matrix.executable_name }}.app"
 
       - name: Upload macOS artifact
         if: runner.os == 'macOS'
@@ -121,7 +125,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            release/linux/main
-            release/windows/main.exe
+            release/linux/dungeon-hr-linux
+            release/windows/dungeon-hr-windows.exe
             release/macos-intel/dungeon-hr-macos-intel.zip
             release/macos-arm64/dungeon-hr-macos-arm64.zip
