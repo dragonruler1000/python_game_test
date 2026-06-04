@@ -16,7 +16,6 @@ include:
 artifact_name: dungeon-hr-linux
 executable_name: main
 
-```
       - os: windows-latest
         artifact_name: dungeon-hr-windows
         executable_name: main.exe
@@ -90,12 +89,10 @@ steps:
     with:
       name: ${{ matrix.artifact_name }}
       path: dist/${{ matrix.executable_name }}
-```
 
 release:
 needs: build
 
-```
 runs-on: ubuntu-latest
 
 permissions:
@@ -136,4 +133,3 @@ steps:
         release/windows/main.exe
         release/macos-intel/dungeon-hr-macos-intel.zip
         release/macos-arm64/dungeon-hr-macos-arm64.zip
-```
