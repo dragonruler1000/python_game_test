@@ -18,7 +18,7 @@ jobs:
           - os: windows-latest
             artifact_name: dungeon-hr-windows
             executable_name: main.exe
-          - os: macos-13
+          - os: macos-26-intel
             artifact_name: dungeon-hr-macos-intel
             mac_zip_name: dungeon-hr-macos-intel.zip
           - os: macos-latest
