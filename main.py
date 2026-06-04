@@ -145,7 +145,7 @@ def show_ticket():
     next_button.pack_forget()
 
     # Manager message chance
-    if random.randint(1, 2) == 1:
+    if random.randint(1, 3) == 1:
         manager_label.config(
             text="--- MANAGER EMAIL ---\n" + random.choice(manager_messages)
         )

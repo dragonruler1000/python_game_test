@@ -82,5 +82,174 @@
         "correct": 0,
         "success": "The goul successfully completes moss rehab and is now addicted to grass instead.",
         "failure": "The goul's addiction worsens and it starts hoarding moss, leading to a moss infestation in the office."
+    },
+    {
+        "name": "Ju5tJeff",
+        "problem": "He didn't know he was in this game",
+        "solutions": [
+            "Tell him he's in the game",
+            "Ignore him and hope he figures it out",
+            "Convince him to join the game"
+        ],
+        "correct": 0,
+        "success": "Jeff is surprised but excited to be in the game and starts participating actively.",
+        "failure": "Jeff remains oblivious to the game and continues to go about his day without any change in behavior."
+    },
+    {
+        "name": "smeagol",
+        "problem": "He lost his precious",
+        "solutions": [
+            "Help him find it",
+            "Convince him to let go of it",
+            "Replace it with a new precious"
+        ],
+        "correct": 0,
+        "success": "Smeagol finds his precious and is overjoyed, but becomes even more obsessed with it.",
+        "failure": "Smeagol becomes despondent and starts hoarding other shiny objects in an attempt to fill the void left by his lost precious."
+    },
+    {
+        "name": "Wizard Intern",
+        "problem": "Accidentally turned my supervisor into a coffee mug.",
+        "solutions": [
+            "Reverse the spell",
+            "Promote the mug",
+            "Destroy all evidence"
+        ],
+        "correct": 0,
+        "success": "The supervisor is restored and immediately schedules a performance review.",
+        "failure": "The mug becomes department manager."
+    },
+    {
+        "name": "Dungeon Mimic",
+        "problem": "Nobody opens me anymore.",
+        "solutions": [
+            "Improve customer service",
+            "Disguise yourself as loot",
+            "Start a social media account"
+        ],
+        "correct": 1,
+        "success": "Several adventurers are successfully fooled.",
+        "failure": "The mimic becomes an influencer."
+    },
+    {
+        "name": "Necromancer",
+        "problem": "My skeletons formed a union.",
+        "solutions": [
+            "Negotiate fair wages",
+            "Remove their bones",
+            "Summon replacement skeletons"
+        ],
+        "correct": 2,
+        "success": "The new skeletons immediately start a second union.",
+        "failure": "The skeletons demand dental coverage despite lacking teeth."
+    },
+    {
+        "name": "Village Guard",
+        "problem": "Arrow took an arrow to the knee.",
+        "solutions": [
+            "Apply healing potion",
+            "Install second knee",
+            "Retire immediately"
+        ],
+        "correct": 0,
+        "success": "The guard can walk again and won't stop talking about it.",
+        "failure": "The guard starts a knee collection."
+    },
+    {
+        "name": "Goblin Chef",
+        "problem": "Customers keep escaping the restaurant.",
+        "solutions": [
+            "Improve food quality",
+            "Lock the exits",
+            "Lower standards"
+        ],
+        "correct": 0,
+        "success": "The food is now only mildly poisonous.",
+        "failure": "The restaurant wins 'Most Secure Dining Experience' award."
+    },
+    {
+        "name": "Crystal Ball Technician",
+        "problem": "The future keeps buffering.",
+        "solutions": [
+            "Increase prophecy bandwidth",
+            "Polish the crystal",
+            "Wait 300 years"
+        ],
+        "correct": 1,
+        "success": "The future is visible again and somehow contains more advertisements.",
+        "failure": "The technician is stuck in a loading screen."
+    },
+    {
+        "name": "Dwarf Miner",
+        "problem": "Found too much gold.",
+        "solutions": [
+            "Mine less gold",
+            "Dig deeper",
+            "Complain louder"
+        ],
+        "correct": 1,
+        "success": "The dwarf discovers diamonds and a much larger problem.",
+        "failure": "The gold shortage causes an economic crisis."
+    },
+    {
+        "name": "Town Bard",
+        "problem": "My latest song is stuck in everyone's head.",
+        "solutions": [
+            "Write a better song",
+            "Cast silence",
+            "Charge royalties"
+        ],
+        "correct": 2,
+        "success": "The bard becomes rich and universally hated.",
+        "failure": "The entire town communicates exclusively through humming."
+    },
+    {
+        "name": "Evil Overlord",
+        "problem": "My minions keep calling me 'Bestie'.",
+        "solutions": [
+            "Increase workplace fear",
+            "Host team-building exercises",
+            "Change your title to Supreme Bestie"
+        ],
+        "correct": 0,
+        "success": "The minions are terrified again, but morale reaches historic lows.",
+        "failure": "The annual friendship picnic becomes mandatory."
+    },
+    {
+        "name": "Apprentice Alchemist",
+        "problem": "Potion turned my cat invisible.",
+        "solutions": [
+            "Create visibility potion",
+            "Paint the cat",
+            "Pretend nothing happened"
+        ],
+        "correct": 0,
+        "success": "The cat is visible again and extremely judgmental.",
+        "failure": "Nobody knows where the cat is, including the cat."
+    },
+    {
+        "name": "Ancient Lich",
+        "problem": "Forgot where I put my phylactery.",
+        "solutions": [
+            "Retrace your steps",
+            "Make a new one",
+            "Check under the couch"
+        ],
+        "correct": 2,
+        "success": "The phylactery was under the couch the whole time.",
+        "failure": "The lich now has two phylacteries and no idea which is real."
+    },
+    {
+        "name": "Quest Board Manager",
+        "problem": "Heroes keep accepting quests and never reading the details.",
+        "solutions": [
+            "Make quests shorter",
+            "Use larger font",
+            "Add pictures"
+        ],
+        "correct": 2,
+        "success": "Quest completion rates improve dramatically.",
+        "failure": "The heroes still skip to the rewards section."
     }
+
 ]
